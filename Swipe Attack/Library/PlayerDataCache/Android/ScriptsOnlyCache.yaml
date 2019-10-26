@@ -63,23 +63,23 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 9874}
     - Class: 114
-      Script: {instanceID: 9926}
+      Script: {instanceID: 9910}
     - Class: 114
-      Script: {instanceID: 10274}
+      Script: {instanceID: 9928}
     - Class: 114
-      Script: {instanceID: 10350}
+      Script: {instanceID: 10276}
     - Class: 114
-      Script: {instanceID: 10482}
+      Script: {instanceID: 10352}
     - Class: 114
-      Script: {instanceID: 10732}
+      Script: {instanceID: 10484}
     - Class: 114
-      Script: {instanceID: 11118}
+      Script: {instanceID: 10734}
     - Class: 114
-      Script: {instanceID: 11454}
+      Script: {instanceID: 11120}
     - Class: 114
-      Script: {instanceID: 11488}
+      Script: {instanceID: 11456}
     - Class: 114
-      Script: {instanceID: 26538}
+      Script: {instanceID: 11490}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -185,6 +185,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
     className: TMP_InputField
+  - hash:
+      serializedVersion: 2
+      Hash: ed69b90a1c583014523587fb2f0bb46d
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: ScoreConfig
   - hash:
       serializedVersion: 2
       Hash: c4127fe1f9fb2efa82d0dc38ec823f63
@@ -539,12 +545,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
-  - hash:
-      serializedVersion: 2
-      Hash: ed69b90a1c583014523587fb2f0bb46d
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: ScoreConfig
   platform: 13
   scenePathNames:
   - Assets/Scenes/Game.unity

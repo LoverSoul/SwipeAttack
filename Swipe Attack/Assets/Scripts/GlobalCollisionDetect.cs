@@ -10,9 +10,11 @@ public class GlobalCollisionDetect : MonoBehaviour
 
     PlayerController contr;
 
+    float delta;
     void Start()
     {
         contr = GameObject.FindGameObjectWithTag("GameController").GetComponent<PlayerController>();
+        delta = (1080f / Screen.width);
     } 
 
     void OnTriggerExit2D(Collider2D col)
@@ -32,7 +34,7 @@ public class GlobalCollisionDetect : MonoBehaviour
             {
                 if (col.tag == "Enemy")
                 {
-                transform.localScale = new Vector2(transform.localScale.x, contr.radius/2-1);
+               transform.localScale = new Vector2(transform.localScale.x, contr.radius/2-1);
 
             }
 
@@ -45,10 +47,11 @@ public class GlobalCollisionDetect : MonoBehaviour
         {
             if (col.tag == "Enemy")
             {
-                    float dist = Vector2.Distance(transform.position, col.transform.position) / 100;
+                    float dist = (Vector2.Distance(transform.position, col.gameObject.transform.position ) / 100)*delta;
                     if (dist > contr.radius / 2 -1)
                         dist = contr.radius / 2 -1;
                     transform.localScale = new Vector2(transform.localScale.x, dist);
+                Debug.Log(dist);
 
                     col.GetComponent<Enemy>().wasHit = true;
                 

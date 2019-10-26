@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     public AnimationCurve speedIncrease;
     public float speed;
     public float radius;
+    float playerRad;
     float currentAngle = -1.57f;
     bool active;
     bool leftRight;
@@ -37,7 +38,14 @@ public class PlayerController : MonoBehaviour
         circleElement.transform.localScale = new Vector3(radius, radius, 1);
      
         lazer.transform.localScale = new Vector3(lazer.transform.localScale.x, radius/2-1, lazer.transform.localScale.z);
+        playerRad = radius /(1080f / Screen.width);
 
+        float x = Mathf.Cos(currentAngle) * playerRad * 50 + centerObject.transform.position.x;
+        float y = Mathf.Sin(currentAngle) * playerRad * 50 + centerObject.transform.position.y;
+
+        player.transform.position = new Vector2(x, y);
+        Vector3 rot = (centerObject.transform.position - player.transform.position);
+        player.transform.up = rot;
     }
 
     // Update is called once per frame
@@ -94,8 +102,8 @@ public class PlayerController : MonoBehaviour
             else
                 currentAngle -= drag / 10 * Time.deltaTime;
         }
-        float x = Mathf.Cos(currentAngle) * radius * 50 + centerObject.transform.position.x;
-        float y = Mathf.Sin(currentAngle) * radius * 50 + centerObject.transform.position.y;
+        float x = Mathf.Cos(currentAngle) * playerRad * 50 + centerObject.transform.position.x;
+        float y = Mathf.Sin(currentAngle) * playerRad * 50 + centerObject.transform.position.y;
 
         player.transform.position = new Vector2(x, y);
         Vector3 rot = (centerObject.transform.position - player.transform.position);
