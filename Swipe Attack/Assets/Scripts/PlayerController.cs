@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    [Header("Basic Game Preferenfes")]
+    public bool dead;
+    public GameController contr;
+    public GameObject startGameWindow;
+
     [Header("Player Preferences")]
     public GameObject player;
     public GameObject lazer;
@@ -33,14 +38,21 @@ public class PlayerController : MonoBehaviour
      
         lazer.transform.localScale = new Vector3(lazer.transform.localScale.x, radius/2-1, lazer.transform.localScale.z);
 
-
     }
 
     // Update is called once per frame
     void Update()
     {
-        DragConfiguer();
-        Movement();
+        if (!dead)
+        {
+            DragConfiguer();
+            Movement();
+        }
+
+        else
+        {
+            DeathAndCloseWindow();
+        }
     }
 
     void DragConfiguer()
@@ -138,5 +150,12 @@ public class PlayerController : MonoBehaviour
     {
         active = false;
         Reset();
+    }
+
+    public void DeathAndCloseWindow()
+    {
+        GetComponent<ScoreConfig>().UploadScoreToController();
+        startGameWindow.SetActive(true);
+        Destroy(gameObject);
     }
 }

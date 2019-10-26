@@ -8,7 +8,12 @@ public class GlobalCollisionDetect : MonoBehaviour
     public bool player;
     public bool sphere;
 
-    
+    PlayerController contr;
+
+    void Start()
+    {
+        contr = GameObject.FindGameObjectWithTag("GameController").GetComponent<PlayerController>();
+    } 
 
     void OnTriggerExit2D(Collider2D col)
     {
@@ -16,31 +21,53 @@ public class GlobalCollisionDetect : MonoBehaviour
         {
             if (col.tag == "Enemy")
             {
-                Debug.Log("Enemy gets away");
+                if (!col.GetComponent<Enemy>().dead)
+                {
+                    contr.dead = true;
+                }
             }
-               
+ 
         }
+        if (lazer)
+            {
+                if (col.tag == "Enemy")
+                {
+                transform.localScale = new Vector2(transform.localScale.x, contr.radius/2-1);
 
+            }
+
+        }
     }
 
-    void OnTriggerEnter2D(Collider2D col)
+    void OnTriggerStay2D(Collider2D col)
+    {
+        if (lazer)
+        {
+            if (col.tag == "Enemy")
+            {
+                    float dist = Vector2.Distance(transform.position, col.transform.position) / 100;
+                    if (dist > contr.radius / 2 -1)
+                        dist = contr.radius / 2 -1;
+                    transform.localScale = new Vector2(transform.localScale.x, dist);
+
+                    col.GetComponent<Enemy>().wasHit = true;
+                
+               
+               
+            }
+        }
+    }
+        void OnTriggerEnter2D(Collider2D col)
     {
 
         if (player)
         {
             if (col.tag == "Enemy")
             {
-                Debug.Log("Enemy kill player");
+               GameObject.FindGameObjectWithTag("GameController").GetComponent<PlayerController>().dead = true;
             }
         }
 
-        if (lazer)
-        {
-            if (col.tag == "Enemy")
-            {
-                Debug.Log("Enemy was killed by Lazer");
-            }
-        }
 
     }
 }
